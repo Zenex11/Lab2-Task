@@ -1,0 +1,20 @@
+name: Dependent Jobs Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job-one:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Hello World
+        run: echo "hello world from Job one"
+
+  job-two:
+    needs: job-one 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Success Message
+        run: echo "Job 1 was successful, now running Job two"
